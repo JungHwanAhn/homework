@@ -44,9 +44,9 @@ class MainActivity : AppCompatActivity() {
     inner class KboAdapter: RecyclerView.Adapter<KboAdapter.ViewHolder>() {
         inner class ViewHolder(itemView: View)
             : RecyclerView.ViewHolder(itemView), OnClickListener {
-            val txTeam: TextView = itemView.findViewById(R.id.text1)
-            val txName: TextView = itemView.findViewById(R.id.text2)
-
+            val txTeam: TextView = itemView.findViewById(R.id.team)
+            val txName: TextView = itemView.findViewById(R.id.name)
+            val txPosition: TextView = itemView.findViewById(R.id.position)
             val niImage: NetworkImageView = itemView.findViewById<NetworkImageView>(R.id.image)
 
             init {
@@ -76,6 +76,7 @@ class MainActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.txTeam.text = model.list.value?.get(position)?.team ?: null
             holder.txName.text = model.list.value?.get(position)?.name ?: null
+            holder.txPosition.text = model.list.value?.get(position)?.position ?: null
             holder.niImage.setImageUrl(model.getImageUrl(position), model.imageLoader)
         }
 

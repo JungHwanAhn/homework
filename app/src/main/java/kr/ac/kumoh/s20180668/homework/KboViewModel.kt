@@ -17,7 +17,7 @@ import org.json.JSONObject
 import java.net.URLEncoder
 
 class KboViewModel (application: Application): AndroidViewModel(application) {
-    data class Kbo (var id: Int, var team: String, var name: String, var image: String)
+    data class Kbo (var id: Int, var team: String, var name: String, var position: String, var image: String)
 
     companion object {
         const val QUEUE_TAG = "KboVolleyRequest"
@@ -58,7 +58,6 @@ class KboViewModel (application: Application): AndroidViewModel(application) {
             "$SERVER_URL/",
             null,
             {
-                //Toast.makeText(getApplication(), it.toString(), Toast.LENGTH_LONG).show()
                 kbo.clear()
                 parseJson(it)
                 _list.value = kbo
@@ -78,10 +77,10 @@ class KboViewModel (application: Application): AndroidViewModel(application) {
             val id = item.getInt("id")
             val team = item.getString("team")
             val name = item.getString("name")
-            //val position = item.getString("position")
+            val position = item.getString("position")
             val image = item.getString("image")
 
-            kbo.add(Kbo(id, team, name, image))
+            kbo.add(Kbo(id, team, name, position, image))
         }
     }
 
